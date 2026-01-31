@@ -1,0 +1,139 @@
+import 'package:flutter/material.dart';
+
+class DepartmentPerformanceCard extends StatelessWidget {
+  const DepartmentPerformanceCard({super.key});
+
+  static const _purple = Color(0xFF5C4B8A);
+
+  @override
+  Widget build(BuildContext context) {
+    final data = [
+      DepartmentData("Sales", 12, 0.88),
+      DepartmentData("Operations", 8, 0.92),
+      DepartmentData("Marketing", 5, 0.76),
+    ];
+
+    return Container(
+ width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.06),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Department\nPerformance",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              height: 1.3,
+            ),
+          ),
+          const SizedBox(height: 20),
+
+          ...data.map((item) => Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: PerformanceRow(data: item),
+              )),
+        ],
+      ),
+    );
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+
+class PerformanceRow extends StatelessWidget {
+  final DepartmentData data;
+  const PerformanceRow({super.key, required this.data});
+
+  static const _purple = Color(0xFF5C4B8A);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Top row
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RichText(
+              text: TextSpan(
+                text: data.name,
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
+                children: [
+                  TextSpan(
+                    text: "  ${data.employees} employees",
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Colors.grey.shade600,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Text(
+              "${(data.progress * 100).round()}%",
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+
+        // Progress bar
+        LayoutBuilder(
+          builder: (context, constraints) {
+            return Stack(
+              children: [
+                Container(
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 600),
+                  height: 8,
+                  width: constraints.maxWidth * data.progress,
+                  decoration: BoxDecoration(
+                    color: _purple,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+
+class DepartmentData {
+  final String name;
+  final int employees;
+  final double progress;
+
+  DepartmentData(this.name, this.employees, this.progress);
+}
