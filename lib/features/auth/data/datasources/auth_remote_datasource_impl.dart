@@ -2,7 +2,7 @@ import 'dart:async';
 import '../models/user_model.dart';
 import 'auth_remote_datasource.dart';
 
-class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
+class AuthRemoteDataSourceImpl implements AuthRemoteDatasource {
   @override
   Future<UserModel> login({
     required String email,

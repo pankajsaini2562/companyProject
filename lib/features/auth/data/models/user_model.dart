@@ -11,8 +11,8 @@ class UserModel {
     required this.password,
     required this.firstName,
     required this.lastName,
-    required this.phone,
-    required this.role,
+    this.phone,
+    this.role,
   });
 
   // json -> Dart
