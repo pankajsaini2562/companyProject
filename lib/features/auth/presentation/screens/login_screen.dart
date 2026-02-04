@@ -1,117 +1,123 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_crm/features/auth/presentation/widgets/app_input_field.dart';
-import 'package:mobile_crm/features/auth/presentation/widgets/support_widget.dart';
+import 'package:mobile_crm/features/auth/presentation/screens/forgot_pass.dart';
+import 'package:mobile_crm/features/auth/presentation/screens/mobile_otp_screen.dart';
+import 'package:mobile_crm/features/auth/presentation/screens/otp_verification.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class LoginScreen extends StatelessWidget {
+  final String role;
 
-  @override
-  State<Login> createState() => _LoginState();
-}
+  const LoginScreen({
+    Key? key,
+    required this.role, // e.g. Employee, Admin, HR
+  }) : super(key: key);
 
-class _LoginState extends State<Login> {
-  final userController = TextEditingController();
-  final passController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.only(right: 25, left: 25),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/Rectangle 23.jpg'),
-            fit: BoxFit.cover,
-          ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('LOG IN via OTP ', style: AppWidget.headlineTextStyle(30)),
-            const SizedBox(height: 40),
-            AppInputField(controller: userController, hintText: 'Enter Email'),
-            AppInputField(controller: passController, hintText: 'Enter OTP'),
-
-            Align(
-              alignment: Alignment.centerLeft,
-
-              child: RichText(
-                text: TextSpan(
-                  text: 'The OTP will expire in 10 min. click here to ',
-
-                  style: TextStyle(color: Colors.white, fontSize: 15),
-
-                  children: [
-                    TextSpan(
-                      text: 'resend.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Top text
+              Text(
+                'Logging in as: $role',
+                style: const TextStyle(fontSize: 16, color: Colors.black54),
               ),
-            ),
-            const SizedBox(height: 35),
-            Container(
-              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                gradient: const LinearGradient(
-                  colors: [Color(0xFFB39DFF), Color(0xFF8F7CFF)],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    blurRadius: 10,
-                    offset: const Offset(0, 5),
-                  ),
-                ],
-              ),
-              child: const Center(
-                child: Text(
-                  "LOG IN",
-                  style: TextStyle(
-                    color: Color(0xFF2B1D4F),
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1,
+
+              const SizedBox(height: 32),
+
+              // Email / Mobile
+              TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  labelText: 'Email / Mobile',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
               ),
-            ),
 
-            const SizedBox(height: 12),
+              const SizedBox(height: 16),
 
-            Align(
-              alignment: Alignment.centerRight,
-              child: RichText(
-                text: const TextSpan(
-                  style: const TextStyle(fontSize: 14),
-                  children: [
-                    TextSpan(
-                      text: "New here? ",
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    TextSpan(
-                      text: "Sign up now!",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+              // Password
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ),
-            ),
-          ],
+
+              const SizedBox(height: 12),
+
+              // Forgot password
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ForgotPass()),
+                    );
+                  },
+                  child: const Text('Forgot Password?'),
+                ),
+              ),
+
+              const Spacer(),
+
+              // Login Button (Primary CTA)
+              SizedBox(
+                width: double.infinity,
+                height: 48,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Handle login
+                  },
+                  child: const Text('Login'),
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // OR
+              const Center(
+                child: Text('OR', style: TextStyle(color: Colors.black45)),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Login with OTP (Secondary)
+              SizedBox(
+                width: double.infinity,
+                height: 48,
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const MobileOtpScreen(),
+                      ),
+                    );
+                  },
+                  child: const Text('Login with OTP'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

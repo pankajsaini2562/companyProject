@@ -4,7 +4,9 @@ import 'package:mobile_crm/features/auth/presentation/screens/change_password_sc
 import 'package:mobile_crm/features/auth/presentation/screens/forgot_passsword_screen.dart';
 import 'package:mobile_crm/features/auth/presentation/screens/login_screen.dart';
 import 'package:mobile_crm/features/auth/presentation/screens/profile_screen.dart';
+import 'package:mobile_crm/features/auth/presentation/screens/select_role_screen.dart';
 import 'package:mobile_crm/features/auth/presentation/screens/signup_screen.dart';
+import 'package:mobile_crm/features/auth/presentation/screens/splash_screen.dart';
 import 'package:mobile_crm/features/auth/presentation/screens/welcome_screen.dart';
 import 'package:mobile_crm/features/chat/presentation/screens/chat_screen.dart';
 import 'package:mobile_crm/features/clients/presentation/screens/client.dart';
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const WelcomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }
