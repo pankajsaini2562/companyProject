@@ -10,7 +10,9 @@ import 'package:mobile_crm/features/auth/presentation/screens/splash_screen.dart
 import 'package:mobile_crm/features/auth/presentation/screens/welcome_screen.dart';
 import 'package:mobile_crm/features/chat/presentation/screens/chat_screen.dart';
 import 'package:mobile_crm/features/clients/presentation/screens/client.dart';
+import 'package:mobile_crm/features/dashboard/presentation/screens/admin_dashboard_screen.dart';
 import 'package:mobile_crm/features/dashboard/presentation/screens/dashboard_screen.dart';
+import 'package:mobile_crm/features/dashboard/presentation/widgets/report_screen.dart';
 import 'package:mobile_crm/features/hr/presentation/screens/hr.dart';
 import 'package:mobile_crm/features/leads/presentation/screens/new_lead_screen.dart';
 import 'package:mobile_crm/features/settings/presentation/screens/setting_screen.dart';
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const SplashScreen(),
+      home: const AdminDashboardScreen(),
     );
   }
 }
