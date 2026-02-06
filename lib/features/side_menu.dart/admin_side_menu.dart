@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_crm/features/accountdashboard/presentation/screens/account_dashboard_screen.dart';
+import 'package:mobile_crm/features/employ_dashboard/presentation/screens/employ_screen.dart';
+import 'package:mobile_crm/features/employee_dashboard/presentation/screens/employee_dashboard_screen.dart';
 import 'package:mobile_crm/features/hr_dashboard/presentation/screens/attendance_screen.dart';
 import 'package:mobile_crm/features/hr_dashboard/presentation/screens/hr_dashboard_screen.dart';
 import 'package:mobile_crm/features/reports/presentation/screens/report_screen.dart';
@@ -40,7 +42,26 @@ class AdminSideMenu extends StatelessWidget {
                   context,
                   icon: Icons.person,
                   title: 'Employee Dashboard',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EmployScreen()),
+                    );
+                  },
+                ),
+
+                _menuItem(
+                  context,
+                  icon: Icons.person,
+                  title: 'Task Management',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EmployeeDashboardScreen(),
+                      ),
+                    );
+                  },
                 ),
                 _menuItem(
                   context,
