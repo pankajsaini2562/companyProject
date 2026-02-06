@@ -5,6 +5,7 @@ import 'package:mobile_crm/features/employee_dashboard/presentation/screens/empl
 import 'package:mobile_crm/features/hr_dashboard/presentation/screens/attendance_screen.dart';
 import 'package:mobile_crm/features/hr_dashboard/presentation/screens/hr_dashboard_screen.dart';
 import 'package:mobile_crm/features/reports/presentation/screens/report_screen.dart';
+import 'package:mobile_crm/features/setting_screen/presentation/screens/setting_screen.dart';
 import 'package:mobile_crm/features/wfh/presentation/screens/wfh_dashboard_screen.dart';
 
 class AdminSideMenu extends StatelessWidget {
@@ -118,7 +119,12 @@ class AdminSideMenu extends StatelessWidget {
                   context,
                   icon: Icons.settings,
                   title: 'Settings',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SettingScreen()),
+                    );
+                  },
                 ),
                 _menuItem(
                   context,
