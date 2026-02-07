@@ -76,20 +76,20 @@ class SideMenu extends StatelessWidget {
             ),
             menuItem(
               "Accounting reports",
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Account()),
-                );
-              },
+              // onTap: () {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => Account()),
+              //   );
+              // },
             ),
             menuItem(
               "HR Analysis",
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HR()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => HR()),
+                // );
               },
             ),
             menuItem(

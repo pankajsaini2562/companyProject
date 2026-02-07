@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_crm/features/accountdashboard/presentation/screens/account_dashboard_screen.dart';
+import 'package:mobile_crm/features/crm_module/presentation/screens/leads_list_screen.dart';
 import 'package:mobile_crm/features/employ_dashboard/presentation/screens/employ_screen.dart';
 import 'package:mobile_crm/features/employee_dashboard/presentation/screens/employee_dashboard_screen.dart';
 import 'package:mobile_crm/features/hr_dashboard/presentation/screens/attendance_screen.dart';
 import 'package:mobile_crm/features/hr_dashboard/presentation/screens/hr_dashboard_screen.dart';
+
 import 'package:mobile_crm/features/reports/presentation/screens/report_screen.dart';
 import 'package:mobile_crm/features/setting_screen/presentation/screens/setting_screen.dart';
 import 'package:mobile_crm/features/wfh/presentation/screens/wfh_dashboard_screen.dart';
@@ -29,45 +31,34 @@ class AdminSideMenu extends StatelessWidget {
                 _menuItem(
                   context,
                   icon: Icons.people,
-                  title: 'CRM / Leads',
-                  onTap: () {},
-                ),
-                _menuItem(
-                  context,
-                  icon: Icons.assignment,
-                  title: 'Loans',
-                  onTap: () {},
-                ),
-
-                _menuItem(
-                  context,
-                  icon: Icons.person,
-                  title: 'Employee Dashboard',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EmployScreen()),
-                    );
-                  },
-                ),
-
-                _menuItem(
-                  context,
-                  icon: Icons.person,
-                  title: 'Task Management',
+                  title: 'CRM',
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => EmployeeDashboardScreen(),
+                        builder: (context) => LeadsListScreen(),
                       ),
                     );
                   },
                 ),
                 _menuItem(
                   context,
-                  icon: Icons.badge,
-                  title: 'HR Management',
+                  icon: Icons.assignment,
+                  title: 'Documents & Applications',
+                  onTap: () {},
+                ),
+
+                _menuItem(
+                  context,
+                  icon: Icons.person,
+                  title: 'Tasks ',
+                  onTap: () {},
+                ),
+
+                _menuItem(
+                  context,
+                  icon: Icons.person,
+                  title: 'HR',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -79,42 +70,48 @@ class AdminSideMenu extends StatelessWidget {
                 ),
                 _menuItem(
                   context,
-                  icon: Icons.currency_rupee,
+                  icon: Icons.badge,
                   title: 'Accounts',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AccountsDashboardScreen(),
-                      ),
-                    );
-                  },
+                  onTap: () {},
                 ),
                 _menuItem(
                   context,
                   icon: Icons.work_outline,
                   title: 'WFH Monitor',
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => WfhDashboardScreen(),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => WfhDashboardScreen(),
+                    //   ),
+                    // );
                   },
                 ),
                 _menuItem(
                   context,
                   icon: Icons.analytics,
-                  title: 'Reports',
+                  title: 'Reports & Analytics',
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ReportScreen()),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => ReportScreen()),
+                    // );
                   },
                 ),
-                const Divider(),
+                _menuItem(
+                  context,
+                  icon: Icons.analytics,
+                  title: 'Feedback & Suggestions',
+                  onTap: () {},
+                ),
+
+                _menuItem(
+                  context,
+                  icon: Icons.settings,
+                  title: 'Integrations ',
+                  onTap: () {},
+                ),
+
                 _menuItem(
                   context,
                   icon: Icons.settings,
