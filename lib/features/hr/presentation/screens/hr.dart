@@ -13,7 +13,6 @@ class _HRScreenState extends State<HRScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const AppDrawer(),
       appBar: AppBar(
         leading: Builder(
           builder: (BuildContext context) {

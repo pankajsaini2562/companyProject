@@ -8,8 +8,6 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const AppDrawer(),
-
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
         leading: Builder(

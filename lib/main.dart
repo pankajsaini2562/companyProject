@@ -25,6 +25,7 @@ import 'package:mobile_crm/features/tasks/presentation/screens/new_task_screen.d
 import 'package:mobile_crm/features/tasks/presentation/screens/tasks_screen.dart';
 import 'package:mobile_crm/features/wfh/presentation/screens/wfh_dashboard_screen.dart'
     hide WFHMonitorScreen;
+import 'package:mobile_crm/main_layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const IntegrationsScreen(),
+      home: const MainLayout(),
     );
   }
 }

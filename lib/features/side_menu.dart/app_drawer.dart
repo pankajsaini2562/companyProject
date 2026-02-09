@@ -1,93 +1,52 @@
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({Key? key}) : super(key: key);
+  final int selectedIndex;
+  final Function(int) onItemSelected;
+
+  const AppDrawer({
+    Key? key,
+    required this.selectedIndex,
+    required this.onItemSelected,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
         color: const Color(0xFF1E293B),
-        child: Column(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
-            // Drawer Header
+            const SizedBox(height: 40),
 
-            // Menu Items
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.dashboard_outlined,
-                    title: 'Dashboard',
-                    isSelected: true,
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.people_outline,
-                    title: 'CRM',
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.description_outlined,
-                    title: 'Documents & Applications',
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.task_alt_outlined,
-                    title: 'Tasks',
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.business_center_outlined,
-                    title: 'HR',
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.account_balance_outlined,
-                    title: 'Accounts',
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.home_work_outlined,
-                    title: 'WFH Monitor',
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.analytics_outlined,
-                    title: 'Reports & Analytics',
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.feedback_outlined,
-                    title: 'Feedback & Suggestions',
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.integration_instructions_outlined,
-                    title: 'Integrations',
-                  ),
+            _buildMenuItem(Icons.dashboard_outlined, "Dashboard", 0),
+            _buildMenuItem(Icons.people_outline, "CRM", 1),
+            _buildMenuItem(Icons.task_alt_outlined, "Tasks", 2),
+            _buildMenuItem(Icons.business_center_outlined, "HR", 3),
+            _buildMenuItem(Icons.account_balance_outlined, "Accounts", 4),
+            _buildMenuItem(Icons.home_work_outlined, "WFH Monitor", 5),
+            _buildMenuItem(Icons.analytics_outlined, "Reports", 6),
 
-                  // Divider before settings
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Divider(color: Color(0xFF334155), height: 1),
-                  ),
+            _buildMenuItem(
+              Icons.feedback_outlined,
+              "Feedback & Suggestions",
+              7,
+            ),
+            _buildMenuItem(
+              Icons.integration_instructions_outlined,
+              "Integrations",
+              8,
+            ),
 
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.settings_outlined,
-                    title: 'Settings',
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.logout,
-                    title: 'Logout',
-                    isLogout: true,
-                  ),
-                ],
-              ),
+            _buildMenuItem(Icons.settings_outlined, "Settings", 9),
+
+            const Divider(color: Color(0xFF334155)),
+
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.red),
+              title: const Text("Logout", style: TextStyle(color: Colors.red)),
+              onTap: () {},
             ),
           ],
         ),
@@ -95,85 +54,29 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  Widget _buildMenuItem(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    bool isSelected = false,
-    bool isLogout = false,
-  }) {
+  Widget _buildMenuItem(IconData icon, String title, int index) {
+    bool isSelected = selectedIndex == index;
+
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         color: isSelected ? const Color(0xFF3B82F6) : Colors.transparent,
         borderRadius: BorderRadius.circular(8),
       ),
       child: ListTile(
-        dense: true,
         leading: Icon(
           icon,
           color: isSelected ? Colors.white : const Color(0xFF94A3B8),
-          size: 22,
         ),
         title: Text(
           title,
           style: TextStyle(
             color: isSelected ? Colors.white : const Color(0xFF94A3B8),
-            fontSize: 14,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),
-        onTap: () {
-          if (isLogout) {
-            // Show logout confirmation dialog
-            _showLogoutDialog(context);
-          } else {
-            // Navigate to selected screen
-            Navigator.pop(context);
-            // Add your navigation logic here
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Navigating to $title'),
-                duration: const Duration(seconds: 1),
-              ),
-            );
-          }
-        },
+        onTap: () => onItemSelected(index),
       ),
-    );
-  }
-
-  void _showLogoutDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Logout'),
-          content: const Text('Are you sure you want to logout?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.pop(context);
-                // Add your logout logic here
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Logged out successfully')),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFEF4444),
-              ),
-              child: const Text('Logout'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

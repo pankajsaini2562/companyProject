@@ -46,7 +46,6 @@ class _WFHMonitorScreenState extends State<WFHMonitorScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const AppDrawer(),
       backgroundColor: const Color(0xFFF5F7FA),
       appBar: AppBar(
         title: const Text('WFH Monitor'),
