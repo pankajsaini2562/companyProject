@@ -22,24 +22,27 @@ class AppDrawer extends StatelessWidget {
 
             _buildMenuItem(Icons.dashboard_outlined, "Dashboard", 0),
             _buildMenuItem(Icons.people_outline, "CRM", 1),
-            _buildMenuItem(Icons.task_alt_outlined, "Tasks", 2),
-            _buildMenuItem(Icons.business_center_outlined, "HR", 3),
-            _buildMenuItem(Icons.account_balance_outlined, "Accounts", 4),
-            _buildMenuItem(Icons.home_work_outlined, "WFH Monitor", 5),
-            _buildMenuItem(Icons.analytics_outlined, "Reports", 6),
+            _buildMenuItem(Icons.people_outline, "Employees", 2),
+            _buildMenuItem(Icons.request_quote_outlined, "Loans", 3),
+
+            _buildMenuItem(Icons.task_alt_outlined, "Tasks", 4),
+            _buildMenuItem(Icons.business_center_outlined, "HR", 5),
+            _buildMenuItem(Icons.account_balance_outlined, "Accounts", 6),
+            _buildMenuItem(Icons.home_work_outlined, "WFH Monitor", 7),
+            _buildMenuItem(Icons.analytics_outlined, "Reports", 8),
 
             _buildMenuItem(
               Icons.feedback_outlined,
               "Feedback & Suggestions",
-              7,
+              9,
             ),
             _buildMenuItem(
               Icons.integration_instructions_outlined,
               "Integrations",
-              8,
+              10,
             ),
 
-            _buildMenuItem(Icons.settings_outlined, "Settings", 9),
+            _buildMenuItem(Icons.settings_outlined, "Settings", 11),
 
             const Divider(color: Color(0xFF334155)),
 

@@ -14,10 +14,12 @@ import 'package:mobile_crm/features/crm_module/presentation/screens/crm_screen.d
 import 'package:mobile_crm/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:mobile_crm/features/dashboard/presentation/widgets/report_screen.dart';
 import 'package:mobile_crm/features/document_screen.dart/presentation/screens/document_application_screen.dart';
+import 'package:mobile_crm/features/employee_dashboard/presentation/screens/employee_dashboard_screen.dart';
 import 'package:mobile_crm/features/feedback/presentation/screens/feedback_suggestion_screen.dart';
 import 'package:mobile_crm/features/hr/presentation/screens/hr.dart';
 import 'package:mobile_crm/features/integration/presentation/screens/integrations_screen.dart';
 import 'package:mobile_crm/features/leads/presentation/screens/new_lead_screen.dart';
+import 'package:mobile_crm/features/loans/presentation/screens/loanssection.dart';
 import 'package:mobile_crm/features/reports/presentation/screens/report_screen.dart';
 import 'package:mobile_crm/features/settings/presentation/screens/setting_screen.dart';
 import 'package:mobile_crm/features/side_menu.dart/app_drawer.dart';
@@ -41,9 +43,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 218, 2, 2),
+        ),
       ),
-      home: const MainLayout(),
+      home: const SplashScreen(),
     );
   }
 }

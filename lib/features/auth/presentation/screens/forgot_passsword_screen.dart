@@ -1,111 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_crm/features/auth/presentation/widgets/app_input_field.dart';
 
-class ForgotPassswordScreen extends StatefulWidget {
+class ForgotPassswordScreen extends StatelessWidget {
   const ForgotPassswordScreen({super.key});
 
   @override
-  State<ForgotPassswordScreen> createState() => _ForgotPassswordScreenState();
-}
-
-class _ForgotPassswordScreenState extends State<ForgotPassswordScreen> {
-  final userController = TextEditingController();
-  final passController = TextEditingController();
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-
-          child: Column(
-            children: [
-              Container(
-                child: Stack(
-                  children: [
-                    Image.asset('assets/images/Rectangle 58.png'),
-                    Positioned(
-                      top: 30,
-                      left: 15,
-                      child: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                        size: 28,
-                      ),
-                    ),
-                    Positioned(
-                      top: 110,
-                      right: 15,
-                      child: Text(
-                        'Change \n Password',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
+      appBar: AppBar(
+        title: const Text('Forgot Password'),
+        backgroundColor: const Color(0xFF2C3E7C),
+        foregroundColor: Colors.white,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          children: [
+            const SizedBox(height: 40),
+            const Icon(Icons.lock_reset, size: 80, color: Color(0xFF2C3E7C)),
+            const SizedBox(height: 30),
+            const Text(
+              'Reset Password',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Enter your email to receive reset link',
+              style: TextStyle(color: Colors.grey.shade600),
+            ),
+            const SizedBox(height: 40),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Email',
+                prefixIcon: const Icon(Icons.email),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    AppInputField(
-                      controller: userController,
-                      hintText: 'Current Password',
+            ),
+            const SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Reset link sent to your email'),
+                      backgroundColor: Colors.green,
                     ),
-
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text('Forgot Password'),
-                    ),
-
-                    const SizedBox(height: 5),
-                    AppInputField(
-                      controller: passController,
-                      hintText: 'New Password',
-                    ),
-                    AppInputField(
-                      controller: passController,
-                      hintText: 'Confirm Password',
-                    ),
-                    const SizedBox(height: 35),
-                    SizedBox(
-                      width: 150,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // TODO: button action
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(
-                            0xFF2E1B5B,
-                          ), // dark purple
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          elevation: 4,
-                        ),
-                        child: const Text(
-                          "Done",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  );
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF2C3E7C),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
+                child: const Text('Send Reset Link'),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
